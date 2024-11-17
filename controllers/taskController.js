@@ -13,7 +13,7 @@ const createTask = async(req, res, next) => {
 const viewTasks = async(req, res, next) => {
     try {
         const tasks = await task.getAllTasks();
-        res.status(201).json(tasks);
+        res.status(200).json(tasks);
     } catch(err) {
         next(err);
     }
@@ -21,9 +21,9 @@ const viewTasks = async(req, res, next) => {
 
 const viewTaskById = async(req, res, next) => {
     try {
-        const {id} = req.body;
+        const {id} = req.params;
         const tasks = await task.getTaskById(id);
-        res.status(201).json(tasks);
+        res.status(200).json(tasks);
     } catch(err) {
         next(err);
     }
@@ -31,9 +31,9 @@ const viewTaskById = async(req, res, next) => {
 
 const removeTask = async(req, res, next) => {
     try {
-        const {id} = req.body;
+        const {id} = req.params;
         const tasks = await task.deleteTaskById(id);
-        res.status(201).json(tasks);
+        res.status(200).json(tasks);
     } catch(err) {
         next(err);
     }
@@ -41,9 +41,10 @@ const removeTask = async(req, res, next) => {
 
 const changeTask = async(req, res, next) => {
     try {
-        const {title, description, status, id} = req.body;
+        const {id} = req.params;
+        const {title, description, status} = req.body;
         const tasks = await task.updateTaskById(title, description, status, id);
-        res.status(201).json(tasks);
+        res.status(200).json(tasks);
     } catch(err) {
         next(err);
     }
