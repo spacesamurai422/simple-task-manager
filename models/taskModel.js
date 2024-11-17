@@ -39,7 +39,7 @@ const getTaskById = async (id) => {
 // Update an existing task by id
 const updateTaskById = async (title, description, status, id) => {
     try {
-        const [result] = await db.query('UPDATE tasks SET title = ?, description = ?, status = ? WHERE id=?', [title,description,status,id])
+        const [result] = await db.query('UPDATE tasks SET title = ?, description = ?, status = ? WHERE id=?', [title, description, status, id])
         console.log(result);
         return result.affectedRows > 0;  // true if task is updated or deleted
     } catch(err) {
